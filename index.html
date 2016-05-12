@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="index.css" />
+  <title> Thermo9000 </title>
+</head>
+<body>
+
+  <section>
+    <h1 id="temperature"></h1>
+    <p>
+      <label for="up">Increase Temperature</label>
+      <button id="up">+</button>
+      <br>
+      <label for="down">Decrease Temperature</label>
+      <button id="down">-</button>
+      <br>
+      <label for="reset">Reset Temperature</label>
+      <button id="reset">reset</button>
+      <br>
+      power saving mode is <span id="powerSavingMode">on</span>
+      <br>
+      <label for="power-saving-on">PSM on</label>
+      <button id="psmOn">-</button>
+      <br>
+      <label for="power-saving-off">PSM off</label>
+      <button id="psmOff">-</button>
+    </p>
+  </section>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="src/thermostat.js"></script>
+  <script>
+    $(document).ready(function() {
+      var thermo = new Thermostat();
+        function updateTemperature() {
+          $('#temperature').text(thermo.temperature);
+          $('#temperature').attr('class', thermo.energyUsage());
+        }
+//         function updateTemperature() {
+//   $('#temperature').text(thermo.temperature);
+//   if(thermo.energyUsage() === 'low-usage') {
+//     $('#temperature').css('color', 'green')
+//   } else if(thermo.energyUsage() === 'medium-usage') {
+//     $('#temperature').css('color', 'black')
+//   } else {
+//     $('#temperature').css('color', 'red')
+//   }
+// }
+      updateTemperature();
+      $('#up').click(function(){
+        thermo.up();
+        updateTemperature();
+      });
+      $('#down').click(function(){
+        thermo.down();
+        updateTemperature();
+      });
+      $('#reset').click(function(){
+        thermo.resetTemperature();
+        updateTemperature();
+      });
+      $('#psmOn').click(function(){
+        thermo.turnPowerSavingModeOn();
+        updateTemperature();
+      });
+      $('#psmOff').click(function(){
+        thermo.turnPowerSavingModeOff();
+        updateTemperature();
+      });
+    });
+    </script>
+</body>
+</html>
