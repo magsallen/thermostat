@@ -9,7 +9,11 @@
 
   <section>
     <h1 id="temperature"></h1>
-    <h1>Current temperature: <span id="current-temperature">20</span></h1>
+        <h1>Current temperature: <span id="current-temperature">20</span></h1>
+    <form id="select-city">
+      <input id="current-city" type="text" placeholder="Enter a city"></input>
+      <input type="submit"></input>
+    </form>
     <p>
       <label for="up">Increase Temperature</label>
       <button id="up">+</button>
@@ -34,34 +38,57 @@
   <script>
     $(document).ready(function() {
       var thermo = new Thermostat();
+
+        function displayWeather(city) {
+         var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+         var token = '&appid=754e588fbdbacd081c8ee5f26ae277cf';
+         var units = '&units=metric';
+         $.get(url + token + units, function(data) {
+           $('#current-temperature').text(data.main.temp);
+         });
+       };
+
+
+         displayWeather('London');
+
+        $('#select-city').submit(function(event) {
+          event.preventDefault();
+          var city = $('#current-city').val();
+          displayWeather(city);
+        })
+
         function updateTemperature() {
           $('#temperature').text(thermo.temperature);
           $('#temperature').attr('class', thermo.energyUsage());
         }
+
       updateTemperature();
       $('#up').click(function(){
         thermo.up();
         updateTemperature();
       });
+
       $('#down').click(function(){
         thermo.down();
         updateTemperature();
       });
+
       $('#reset').click(function(){
         thermo.resetTemperature();
         updateTemperature();
       });
+
       $('#psmOn').click(function(){
         thermo.turnPowerSavingModeOn();
         updateTemperature();
       });
+
       $('#psmOff').click(function(){
         thermo.turnPowerSavingModeOff();
         updateTemperature();
       });
-    })
+
     });
-      })
     </script>
 </body>
 </html>
