@@ -9,6 +9,7 @@
 
   <section>
     <h1 id="temperature"></h1>
+    <h1>Current temperature: <span id="current-temperature">20</span></h1>
     <p>
       <label for="up">Increase Temperature</label>
       <button id="up">+</button>
@@ -37,16 +38,6 @@
           $('#temperature').text(thermo.temperature);
           $('#temperature').attr('class', thermo.energyUsage());
         }
-//         function updateTemperature() {
-//   $('#temperature').text(thermo.temperature);
-//   if(thermo.energyUsage() === 'low-usage') {
-//     $('#temperature').css('color', 'green')
-//   } else if(thermo.energyUsage() === 'medium-usage') {
-//     $('#temperature').css('color', 'black')
-//   } else {
-//     $('#temperature').css('color', 'red')
-//   }
-// }
       updateTemperature();
       $('#up').click(function(){
         thermo.up();
@@ -68,7 +59,14 @@
         thermo.turnPowerSavingModeOff();
         updateTemperature();
       });
+    })
     });
+      })
     </script>
 </body>
 </html>
+
+
+
+
+<!-- 754e588fbdbacd081c8ee5f26ae277cf -->
