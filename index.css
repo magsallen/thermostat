@@ -1,3 +1,6 @@
+/*$('#background-image').css('background-image', "url(http://centralhighlands.com.au/files/2014/12/weather-hero.jpg)");*/
+
+
 .low-usage {
   color: green;
 }
@@ -9,3 +12,15 @@
 .high-usage {
   color: red;
 }
+
+body {background-color:; background-image:url(http://www.yomommaspace.com/graphics/layouts/relapse.jpg); background-position:Top Center; background-attachment:fixed;  }
+
+#powerSave {
+  width: 600px;
+  margin: 0 auto;
+  background-color: red
+  font-family: Helvetica;
+  color: #ffffff;
+  font-size: 32px;
+
+  }

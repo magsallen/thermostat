@@ -6,10 +6,11 @@
   <title> Thermo9000 </title>
 </head>
 <body>
-
+  <center>
+    <!-- <div id="background-image"></div> -->
   <section>
     <h1 id="temperature"></h1>
-        <h1>Current temperature: <span id="current-temperature">20</span></h1>
+        <h1>Temperature in  selected city : <span id="current-temperature">20</span></h1>
     <form id="select-city">
       <input id="current-city" type="text" placeholder="Enter a city"></input>
       <input type="submit"></input>
@@ -24,13 +25,15 @@
       <label for="reset">Reset Temperature</label>
       <button id="reset">reset</button>
       <br>
-      power saving mode is <span id="powerSavingMode">on</span>
-      <br>
-      <label for="power-saving-on">PSM on</label>
-      <button id="psmOn">-</button>
-      <br>
-      <label for="power-saving-off">PSM off</label>
-      <button id="psmOff">-</button>
+          <div id='powerSave'>
+            power saving mode is <span id="powerSavingStatus">ON</span>
+            <br>
+            <label for="power-saving-on"></label>
+            <button id="psmOn">ON</button>
+            <br>
+            <label for="power-saving-off"></label>
+            <button id="psmOff">OFF</button>
+          </div>
     </p>
   </section>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -41,12 +44,14 @@
 
         function displayWeather(city) {
          var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
-         var token = '&appid=754e588fbdbacd081c8ee5f26ae277cf';
+         var token = '&appid=a3d9eb01d4de82b9b8d0849ef604dbed';
          var units = '&units=metric';
          $.get(url + token + units, function(data) {
            $('#current-temperature').text(data.main.temp);
          });
        };
+
+
 
 
          displayWeather('London');
@@ -80,16 +85,19 @@
 
       $('#psmOn').click(function(){
         thermo.turnPowerSavingModeOn();
+        $('#powerSavingStatus').text('ON')
         updateTemperature();
       });
 
       $('#psmOff').click(function(){
         thermo.turnPowerSavingModeOff();
+        $('#powerSavingStatus').text('OFF')
         updateTemperature();
       });
 
     });
     </script>
+  </center>
 </body>
 </html>
 
